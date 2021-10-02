@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Player_MovementController : MonoBehaviour
 {
-    private GameObject[] gameLanes;
+    public GameObject[] gameLanes;
 
     private int currentLaneKey = 0;
 
@@ -20,7 +20,6 @@ public class Player_MovementController : MonoBehaviour
 
     private void Start()
     {
-        gameLanes = GameObject.Find("LaneManager").GetComponent<LaneManager>().GetLanes();
         m_collider = GetComponent<BoxCollider2D>();
 
         for (int i = 0; i < gameLanes.Length; i++)
@@ -74,6 +73,28 @@ public class Player_MovementController : MonoBehaviour
                     RightFlipAnimation();
                 }
             }
+        }
+
+        //REMOVE ONCE ANIMATIONS ARE IN
+        switch (currentLaneKey)
+        {
+            case 0:
+                transform.rotation = Quaternion.Euler(0, -50, 0);
+                break;
+            case 1:
+                transform.rotation = Quaternion.Euler(0, -25, 0);
+                break;
+            case 2:
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case 3:
+                transform.rotation = Quaternion.Euler(0, 25, 0);
+                break;
+            case 4:
+                transform.rotation = Quaternion.Euler(0, 50, 0);
+                break;
+            default:
+                break;
         }
     }
 
@@ -157,24 +178,30 @@ public class Player_MovementController : MonoBehaviour
     }
 
 
+    #region FIX LATER TO ADD ANIMATIONS
     //Movement animation functions
     private void LeftAnimation()
     {
-        
+        transform.position = new Vector3(gameLanes[currentLaneKey].transform.position.x, transform.position.y, transform.position.z);
+        direction = null;
     }
 
     private void LeftFlipAnimation()
     {
-
+        transform.position = new Vector3(gameLanes[currentLaneKey].transform.position.x, transform.position.y, transform.position.z);
+        direction = null;
     }
 
     private void RightAnimation()
     {
-
+        transform.position = new Vector3(gameLanes[currentLaneKey].transform.position.x, transform.position.y, transform.position.z);
+        direction = null;
     }
 
     private void RightFlipAnimation()
     {
-
+        transform.position = new Vector3(gameLanes[currentLaneKey].transform.position.x, transform.position.y, transform.position.z);
+        direction = null;
     }
+    #endregion
 }
