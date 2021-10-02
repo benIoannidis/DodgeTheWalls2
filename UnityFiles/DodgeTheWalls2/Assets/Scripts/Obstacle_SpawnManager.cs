@@ -113,15 +113,43 @@ public class Obstacle_SpawnManager : MonoBehaviour
     private IEnumerator SpawnObstacles()
     {
         int patternKey;
-        if (currentDifficulty > 2)
+        if (currentDifficulty > 5)
         {
-            patternKey = Random.Range(0, (30 / (currentDifficulty / 4)));
+            int rand = Random.Range(0, 4);
+            if (rand < 3)
+            {
+                patternKey = Random.Range(0, 24);
+            }
+            else
+            {
+                patternKey = Random.Range(14, 29);
+            }
+        }
+        else if (currentDifficulty > 2)
+        {
+            int rand = Random.Range(0, 4);
+            if (rand < 2)
+            {
+                patternKey = Random.Range(0, 24);
+            }
+            else
+            {
+                patternKey = Random.Range(14, 29);
+            }
         }
         else
         {
-            patternKey = Random.Range(0, 30);
+            int rand = Random.Range(0, 4);
+            if (rand == 0)
+            {
+                patternKey = Random.Range(0, 24);
+            }
+            else
+            {
+                patternKey = Random.Range(14, 29);
+            }
         }
-        Debug.Log(patternKey);
+        //Debug.Log(patternKey);
         yield return new WaitForSeconds(timeBetweenSpawns);
         for (int i = 0; i < 5; i++)
         {
@@ -135,12 +163,32 @@ public class Obstacle_SpawnManager : MonoBehaviour
                     case 0:
                         newObject = Instantiate(obstacle);
                         newObject.GetComponent<Obstacle_MoveScript>().moveSpeed = obstacleMovementSpeed;
-                        newObject.transform.position = new Vector3(gameLanes[i].transform.position.x, newObject.transform.position.y, 0);
+                        newObject.transform.position = new Vector3(gameLanes[i].transform.position.x, this.transform.position.y, 0);
                         break;
                     case 1:
                         newObject = Instantiate(enemyShip);
                         newObject.GetComponent<Obstacle_MoveScript>().moveSpeed = obstacleMovementSpeed;
-                        newObject.transform.position = new Vector3(gameLanes[i].transform.position.x, newObject.transform.position.y, 0);
+                        newObject.transform.position = new Vector3(gameLanes[i].transform.position.x, this.transform.position.y, 0);
+                        switch (i)
+                        {
+                            case 0:
+                                newObject.transform.rotation = Quaternion.Euler(0, -30, 0);
+                                break;
+                            case 1:
+                                newObject.transform.rotation = Quaternion.Euler(0, -15, 0);
+                                break;
+                            case 2:
+                                newObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                                break;
+                            case 3:
+                                newObject.transform.rotation = Quaternion.Euler(0, 15, 0);
+                                break;
+                            case 4:
+                                newObject.transform.rotation = Quaternion.Euler(0, 30, 0);
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     default:
                         break;
@@ -156,6 +204,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
         {
             Debug.Log("Difficulty increased!");
             currentDifficulty--;
+            Debug.Log("Down to level: " + currentDifficulty);
             obstacleMovementSpeed += 1.25f;
         }
     }
