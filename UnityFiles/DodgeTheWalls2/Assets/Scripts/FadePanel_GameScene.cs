@@ -9,7 +9,7 @@ public class FadePanel_GameScene : MonoBehaviour
     [SerializeField]
     private GameObject panel;
 
-    private Color currentPanelColour;
+    public Color currentPanelColour;
 
     public bool shouldFadeIn = false;
     public bool shouldFadeOut = true;
@@ -22,7 +22,7 @@ public class FadePanel_GameScene : MonoBehaviour
         {
             currentPanelColour = panel.GetComponent<Image>().color;
             
-            if (currentPanelColour.a < 0.7)
+            if (currentPanelColour.a < 0.6)
             {
                 currentPanelColour.a -= 0.01f;
             }
@@ -31,12 +31,43 @@ public class FadePanel_GameScene : MonoBehaviour
                 currentPanelColour.a -= 0.05f;
             }
 
+            panel.GetComponent<Image>().color = currentPanelColour;
+            
             if (currentPanelColour.a <= 0)
             {
                 currentPanelColour.a = 0;
                 shouldFadeOut = false;
+                panel.SetActive(false);
             }
+        }
+        else if (shouldFadeIn)
+        {
+            currentPanelColour = panel.GetComponent<Image>().color;
+
+            if (currentPanelColour.a > 0.4)
+            {
+                currentPanelColour.a += 0.01f;
+            }
+            else
+            {
+                currentPanelColour.a += 0.05f;
+            }
+
             panel.GetComponent<Image>().color = currentPanelColour;
+
+            if (currentPanelColour.a >= 1)
+            {
+                if (exitToMenu)
+                {
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene(0);
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                    SceneManager.LoadScene(1);
+                }
+            }
         }
     }
 }

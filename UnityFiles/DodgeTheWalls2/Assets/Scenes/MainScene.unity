@@ -1144,6 +1144,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 680080516}
   shootButton: {fileID: 832674878}
   pauseButton: {fileID: 533779666}
+  fadeManager: {fileID: 679065427}
 --- !u!1 &700505679
 GameObject:
   m_ObjectHideFlags: 0

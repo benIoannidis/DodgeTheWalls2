@@ -26,6 +26,9 @@ public class MainMenu_Manager : MonoBehaviour
 
     private bool checkTextGrow = true;
 
+
+    private bool gameStartedLoading = false;
+
     private void Start()
     {
         playButton.GetComponent<Button>().enabled = false;
@@ -110,13 +113,17 @@ public class MainMenu_Manager : MonoBehaviour
 
             if (current.a >= 1)
             {
-                StartCoroutine("LoadGame");
+                if (!gameStartedLoading)
+                {
+                    StartCoroutine("LoadGame");
+                }
             }
         }
     }
 
     private IEnumerator LoadGame()
     {
+        gameStartedLoading = true;
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("MainScene");
     }
@@ -125,6 +132,7 @@ public class MainMenu_Manager : MonoBehaviour
     {
         blackoutPanel.SetActive(true);
         shouldFadeToLeave = true;
+        gameStartedLoading = false;
     }
 
     public void OnExitPress()

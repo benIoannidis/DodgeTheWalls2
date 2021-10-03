@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu_Manager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PauseMenu_Manager : MonoBehaviour
 
     [SerializeField]
     private GameObject pauseButton;
+
+    [SerializeField]
+    private GameObject fadeManager;
 
     void Start()
     {
@@ -31,6 +35,13 @@ public class PauseMenu_Manager : MonoBehaviour
 
     public void ExitButtonPress()
     {
+        fadeManager.GetComponent<FadePanel_GameScene>().exitToMenu = true;
+        fadeManager.GetComponent<FadePanel_GameScene>().shouldFadeIn = true;
+        Button[] m_buttons = GetComponentsInChildren<Button>();
 
+        foreach (Button b in m_buttons)
+        {
+            b.enabled = false;
+        }
     }
 }
