@@ -16,7 +16,7 @@ TagManager:
   - Asteroid
   - PlayerBullet
   - EnemyBullet
-  - 
+  - ScoreCollider
   - 
   - 
   - 

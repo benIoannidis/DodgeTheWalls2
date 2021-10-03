@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet_Manager : MonoBehaviour
 {
     private bool isPlayerBullet;
-    private float moveSpeed = 5;
+    private float moveSpeed = 10;
     public void Init(bool isPlayerBullet)
     {
         this.isPlayerBullet = isPlayerBullet;

@@ -12,6 +12,9 @@ public class Obstacle_SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyShip;
 
+    [SerializeField]
+    private GameObject scoreObject;
+
     [Header("Lanes")]
 
     [SerializeField]
@@ -32,6 +35,11 @@ public class Obstacle_SpawnManager : MonoBehaviour
 
     private bool cooldownActive = false;
 
+    [Header("Score")]
+
+    [SerializeField]
+    private Game_ScoreManager scoreManager;
+
     struct Pattern
     {
         public Pattern(bool b0, bool b1, bool b2, bool b3, bool b4)
@@ -48,6 +56,8 @@ public class Obstacle_SpawnManager : MonoBehaviour
     }
 
     Dictionary<int, Pattern> m_patterns;
+
+    private bool canIncreaseDif = true;
 
     private void Start()
     {
@@ -92,6 +102,9 @@ public class Obstacle_SpawnManager : MonoBehaviour
         m_patterns[27] = new Pattern(true, true, false, true, true);
         m_patterns[28] = new Pattern(true, true, true, false, true);
         #endregion
+        #region Quint obstacle pattern
+        m_patterns[29] = new Pattern(true, true, true, true, true);
+        #endregion
         #endregion
         timeBetweenSpawns = maxSpawnTime;
     }
@@ -102,6 +115,120 @@ public class Obstacle_SpawnManager : MonoBehaviour
         {
             cooldownActive = true;
             StartCoroutine("SpawnObstacles");
+        }
+
+        //Intervals to increase difficulty
+        switch (scoreManager.m_score)
+        {
+            case 10: //difficulty 9
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 11:
+                canIncreaseDif = true;
+                break;
+
+            case 20: //difficulty 8
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 21:
+                canIncreaseDif = true;
+                break;
+
+            case 30: //difficulty 7
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 31:
+                canIncreaseDif = true;
+                break;
+
+            case 50: //difficulty 6
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 51:
+                canIncreaseDif = true;
+                break;
+
+            case 75: //difficulty 5
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 76:
+                canIncreaseDif = true;
+                break;
+
+            case 100: //difficulty 4
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 101:
+                canIncreaseDif = true;
+                break;
+
+            case 130: //difficulty 3
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 131:
+                canIncreaseDif = true;
+                break;
+
+            case 160: //difficulty 2
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 161:
+                canIncreaseDif = true;
+                break;
+
+            case 200: //difficulty 1
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+            case 201:
+                canIncreaseDif = true;
+                break;
+
+            case 250: //difficulty 0
+                if (canIncreaseDif)
+                {
+                    canIncreaseDif = false;
+                    IncreaseDifficulty();
+                }
+                break;
+
+            default:
+                break;
         }
     }
 
@@ -129,7 +256,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
             }
             else
             {
-                patternKey = Random.Range(14, 29);
+                patternKey = Random.Range(14, 30);
             }
         }
         else
@@ -141,7 +268,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
             }
             else
             {
-                patternKey = Random.Range(14, 29);
+                patternKey = Random.Range(14, 30);
             }
         }
         //Debug.Log(patternKey);
@@ -158,11 +285,13 @@ public class Obstacle_SpawnManager : MonoBehaviour
                     case 0:
                         newObject = Instantiate(obstacle);
                         newObject.GetComponent<Obstacle_MoveScript>().moveSpeed = obstacleMovementSpeed;
+                        newObject.GetComponent<Obstacle_MoveScript>().scoreManager = scoreManager;
                         newObject.transform.position = new Vector3(gameLanes[i].transform.position.x, this.transform.position.y, 0);
                         break;
                     case 1:
                         newObject = Instantiate(enemyShip);
                         newObject.GetComponent<Obstacle_MoveScript>().moveSpeed = obstacleMovementSpeed;
+                        newObject.GetComponent<Obstacle_MoveScript>().scoreManager = scoreManager;
                         newObject.transform.position = new Vector3(gameLanes[i].transform.position.x, this.transform.position.y, 0);
                         switch (i)
                         {
@@ -190,6 +319,9 @@ public class Obstacle_SpawnManager : MonoBehaviour
                 }
             }
         }
+        GameObject newScoreObject = Instantiate(scoreObject);
+        newScoreObject.GetComponent<Obstacle_MoveScript>().moveSpeed = obstacleMovementSpeed;
+        newScoreObject.transform.position = new Vector3(gameLanes[2].transform.position.x, this.transform.position.y, 0);
         cooldownActive = false;
     }
 

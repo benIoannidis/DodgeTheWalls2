@@ -59,12 +59,12 @@ public class FadePanel_GameScene : MonoBehaviour
             {
                 if (exitToMenu)
                 {
-                    Time.timeScale = 1;
+                    //Time.timeScale = 1;
                     SceneManager.LoadScene(0);
                 }
                 else
                 {
-                    Time.timeScale = 1;
+                    //Time.timeScale = 1;
                     SceneManager.LoadScene(1);
                 }
             }

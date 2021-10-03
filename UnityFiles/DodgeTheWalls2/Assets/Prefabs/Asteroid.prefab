@@ -70,7 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionParticles: {fileID: 416422130379716638, guid: 1ad00b70827e46e45acd55a4db0c59a3, type: 3}
   moveSpeed: 5
-  isEnemy: 1
+  isEnemy: 0
+  scoreManager: {fileID: 0}
 --- !u!61 &3106270973469210852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4855,7 +4856,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d734e23c0fc30dd45bf2cefcc7383dea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4876,7 +4877,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 4
+  m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5

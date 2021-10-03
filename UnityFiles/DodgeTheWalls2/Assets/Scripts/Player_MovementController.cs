@@ -19,6 +19,9 @@ public class Player_MovementController : MonoBehaviour
     private string direction = null;
     private bool movementAnimationComplete = true;
 
+    [SerializeField]
+    private Game_ScoreManager scoreManager;
+
     private void Start()
     {
         m_collider = GetComponent<BoxCollider2D>();
@@ -157,7 +160,7 @@ public class Player_MovementController : MonoBehaviour
 
     private void MoveLeft()
     {
-        m_collider.enabled = false;
+        //m_collider.enabled = false;
         //not on left hand edge
         if (currentLaneKey > 0)
         {
@@ -194,8 +197,34 @@ public class Player_MovementController : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 11)
+        {
+            scoreManager.AddScore();
+        }
+    }
 
-#region FIX LATER TO ADD ANIMATIONS
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.layer)
+        {
+            case 7:
+                scoreManager.PlayerDied();
+                break;
+            case 8:
+                scoreManager.PlayerDied();
+                break;
+            case 10:
+                scoreManager.PlayerDied();
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    #region FIX LATER TO ADD ANIMATIONS
     //Movement animation functions
     private void LeftAnimation()
     {

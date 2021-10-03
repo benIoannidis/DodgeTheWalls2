@@ -11,6 +11,8 @@ public class Obstacle_MoveScript : MonoBehaviour
 
     public bool isEnemy = true;
 
+    public Game_ScoreManager scoreManager;
+
     private void Update()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, (-1 * moveSpeed));
@@ -22,8 +24,9 @@ public class Obstacle_MoveScript : MonoBehaviour
         {
             if (isEnemy)
             {
-                Instantiate(explosionParticles, this.transform.position, this.transform.rotation);
+                scoreManager.AddScore();
             }
+            Instantiate(explosionParticles, this.transform.position, this.transform.rotation);
             Destroy(collision.gameObject);
             //Do explosion or some shit
         }
