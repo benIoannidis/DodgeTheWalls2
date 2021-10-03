@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Obstacle_MoveScript : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject explosionParticles;
+
     public float moveSpeed = 5f;
+
+    public bool isEnemy = true;
+
     private void Update()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, (-1 * moveSpeed));
@@ -12,6 +18,15 @@ public class Obstacle_MoveScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.layer == 9) //Player bullet layer
+        {
+            if (isEnemy)
+            {
+                Instantiate(explosionParticles, this.transform.position, this.transform.rotation);
+            }
+            Destroy(collision.gameObject);
+            //Do explosion or some shit
+        }
         Destroy(this.gameObject);
     }
 }

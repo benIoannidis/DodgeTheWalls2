@@ -103,11 +103,6 @@ public class Obstacle_SpawnManager : MonoBehaviour
             cooldownActive = true;
             StartCoroutine("SpawnObstacles");
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            IncreaseDifficulty();
-        }
     }
 
     private IEnumerator SpawnObstacles()
@@ -206,6 +201,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
             currentDifficulty--;
             Debug.Log("Down to level: " + currentDifficulty);
             obstacleMovementSpeed += 1.25f;
+            timeBetweenSpawns -= 0.1f;
         }
     }
 }

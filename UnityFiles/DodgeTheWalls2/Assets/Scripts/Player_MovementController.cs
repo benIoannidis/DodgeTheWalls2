@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 /// <summary>
 /// This is the script to control player movement
 /// </summary>
@@ -33,6 +34,44 @@ public class Player_MovementController : MonoBehaviour
     }
 
     private void Update()
+    {
+#if PLATFORM_ANDROID
+        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        {
+            CheckMovement();
+        }
+#else
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            CheckMovement();
+        }
+#endif
+
+
+        //REMOVE ONCE ANIMATIONS ARE IN
+        switch (currentLaneKey)
+        {
+            case 0:
+                transform.rotation = Quaternion.Euler(0, -50, 0);
+                break;
+            case 1:
+                transform.rotation = Quaternion.Euler(0, -25, 0);
+                break;
+            case 2:
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case 3:
+                transform.rotation = Quaternion.Euler(0, 25, 0);
+                break;
+            case 4:
+                transform.rotation = Quaternion.Euler(0, 50, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void CheckMovement()
     {
         if (direction == null)
         {
@@ -73,28 +112,6 @@ public class Player_MovementController : MonoBehaviour
                     RightFlipAnimation();
                 }
             }
-        }
-
-        //REMOVE ONCE ANIMATIONS ARE IN
-        switch (currentLaneKey)
-        {
-            case 0:
-                transform.rotation = Quaternion.Euler(0, -50, 0);
-                break;
-            case 1:
-                transform.rotation = Quaternion.Euler(0, -25, 0);
-                break;
-            case 2:
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case 3:
-                transform.rotation = Quaternion.Euler(0, 25, 0);
-                break;
-            case 4:
-                transform.rotation = Quaternion.Euler(0, 50, 0);
-                break;
-            default:
-                break;
         }
     }
 
@@ -178,7 +195,7 @@ public class Player_MovementController : MonoBehaviour
     }
 
 
-    #region FIX LATER TO ADD ANIMATIONS
+#region FIX LATER TO ADD ANIMATIONS
     //Movement animation functions
     private void LeftAnimation()
     {
@@ -203,5 +220,5 @@ public class Player_MovementController : MonoBehaviour
         transform.position = new Vector3(gameLanes[currentLaneKey].transform.position.x, transform.position.y, transform.position.z);
         direction = null;
     }
-    #endregion
+#endregion
 }

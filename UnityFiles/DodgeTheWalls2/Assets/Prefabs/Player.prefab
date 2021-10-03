@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5039582587243643806}
   - component: {fileID: 6290735373413170304}
   - component: {fileID: 3516455383597902083}
+  - component: {fileID: 5622437848705251673}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4917,3 +4918,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5622437848705251673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5534469747524092706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d823a47ebd38ba040a22557d0df0970b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4127685253720149633, guid: 905d4ca2642583c40a2576176b456858, type: 3}
+  cooldownTime: 1
