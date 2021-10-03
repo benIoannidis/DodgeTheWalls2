@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4643421625048959526}
   - component: {fileID: 4711061125772069753}
   - component: {fileID: -1634816991336265033}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Asteroid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f883c3a33f2e85c4dbaaca9cbba72e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionParticles: {fileID: 3121937099974713388, guid: 0fc82a501be919e4799a03d7abe92f3f, type: 3}
+  explosionParticles: {fileID: 416422130379716638, guid: 1ad00b70827e46e45acd55a4db0c59a3, type: 3}
   moveSpeed: 5
   isEnemy: 1
 --- !u!58 &-1634816991336265033
