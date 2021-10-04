@@ -86,6 +86,7 @@ public class Game_ScoreManager : MonoBehaviour
         Vector3 pos = player.transform.position;
         Destroy(player);
         //Time.timeScale = 0.1f;
+        playerExplosion.GetComponent<AudioSource>().mute = GameObject.Find("AudioManager").GetComponent<AudioSource>().mute;
         playerParticleObject = Instantiate(playerExplosion, pos, Quaternion.identity);
 
         if (m_score > currentHighscore)

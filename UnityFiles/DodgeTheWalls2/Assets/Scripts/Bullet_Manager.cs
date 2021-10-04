@@ -9,6 +9,10 @@ public class Bullet_Manager : MonoBehaviour
     public void Init(bool isPlayerBullet)
     {
         this.isPlayerBullet = isPlayerBullet;
+        if (!isPlayerBullet)
+        {
+            moveSpeed = 20;
+        }
     }
 
     private void Update()
@@ -16,7 +20,12 @@ public class Bullet_Manager : MonoBehaviour
         int playerCheck = isPlayerBullet ? 1 : -1;
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, playerCheck * moveSpeed);
 
-        if (transform.position.y > 30)
+        if (isPlayerBullet && transform.position.y > 30)
+        {
+            Destroy(this.gameObject);
+        }
+
+        else if (!isPlayerBullet && transform.position.y < -20)
         {
             Destroy(this.gameObject);
         }

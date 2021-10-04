@@ -215,11 +215,16 @@ public class Player_MovementController : MonoBehaviour
             case 8:
                 scoreManager.PlayerDied();
                 break;
-            case 10:
-                scoreManager.PlayerDied();
-                break;
             default:
                 break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 10)
+        {
+            scoreManager.PlayerDied();
         }
     }
 

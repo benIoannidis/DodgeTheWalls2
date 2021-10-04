@@ -91,6 +91,9 @@ MonoBehaviour:
   explosionParticles: {fileID: 3121937099974713388, guid: 0fc82a501be919e4799a03d7abe92f3f, type: 3}
   moveSpeed: 5
   isEnemy: 1
+  highestRandShootingNumber: 0
+  m_bulletPrefab: {fileID: 3318797147445099724, guid: 9bc15113a8d64774aa8e95e4d2b409bd, type: 3}
+  scoreManager: {fileID: 0}
 --- !u!61 &2884671663942911581
 BoxCollider2D:
   m_ObjectHideFlags: 0

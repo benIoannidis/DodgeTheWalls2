@@ -29,7 +29,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
     private float maxSpawnTime = 2f;
 
     private int currentDifficulty = 10;
-    private float timeBetweenSpawns;
+    public float timeBetweenSpawns;
 
     private float obstacleMovementSpeed = 5f;
 
@@ -292,6 +292,42 @@ public class Obstacle_SpawnManager : MonoBehaviour
                         newObject = Instantiate(enemyShip);
                         newObject.GetComponent<Obstacle_MoveScript>().moveSpeed = obstacleMovementSpeed;
                         newObject.GetComponent<Obstacle_MoveScript>().scoreManager = scoreManager;
+                        switch (currentDifficulty)
+                        {
+                            case 10:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 20;
+                                break;
+                            case 9:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 15;
+                                break;
+                            case 8:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 15;
+                                break;
+                            case 7:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 15;
+                                break;
+                            case 6:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 10;
+                                break;
+                            case 5:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 10;
+                                break;
+                            case 4:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 10;
+                                break;
+                            case 3:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 5;
+                                break;
+                            case 2:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 5;
+                                break;
+                            case 1:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 5;
+                                break;
+                            case 0:
+                                newObject.GetComponent<Obstacle_MoveScript>().highestRandShootingNumber = 3;
+                                break;
+                        }
                         newObject.transform.position = new Vector3(gameLanes[i].transform.position.x, this.transform.position.y, 0);
                         switch (i)
                         {
@@ -333,7 +369,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
             currentDifficulty--;
             Debug.Log("Down to level: " + currentDifficulty);
             obstacleMovementSpeed += 1.25f;
-            timeBetweenSpawns -= 0.1f;
+            timeBetweenSpawns -= 0.15f;
         }
     }
 }

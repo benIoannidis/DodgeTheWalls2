@@ -17,6 +17,8 @@ public class InGameUI_Manager : MonoBehaviour
     {
 #if PLATFORM_STANDALONE_WIN
         shootButton.SetActive(false);
+#elif PLATFORM_WEBGL
+        shootButton.SetActive(false);
 #endif
     }
 

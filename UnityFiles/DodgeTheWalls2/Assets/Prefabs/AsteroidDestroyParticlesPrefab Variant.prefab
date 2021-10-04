@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
       value: 0.41079143
       objectReference: {fileID: 0}
+    - target: {fileID: 3107052361500033662, guid: 0fc82a501be919e4799a03d7abe92f3f, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 78229112e2ad3c342b966b3e1dc88296, type: 3}
     - target: {fileID: 3121937099974713388, guid: 0fc82a501be919e4799a03d7abe92f3f, type: 3}
       propertyPath: m_Name
       value: AsteroidDestroyParticlesPrefab Variant
