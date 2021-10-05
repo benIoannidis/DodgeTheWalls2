@@ -25,6 +25,9 @@ public class Game_ScoreManager : MonoBehaviour
 
     private int currentHighscore;
 
+    [SerializeField]
+    private GameObject inGameUI;
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("Highscore"))
@@ -57,6 +60,7 @@ public class Game_ScoreManager : MonoBehaviour
         if (playerParticleObject != null && playerParticleObject.GetComponent<ParticleSystem>().isStopped)
         {
             Time.timeScale = 0f;
+            inGameUI.SetActive(false);
             pauseMenu.SetActive(true);
             resumeButton.SetActive(false);
             restartButton.SetActive(true);

@@ -3,21 +3,51 @@
     "m_SelectedPackage": {
         "deviceId": "3c00acee",
         "name": "com.DefaultCompany.DodgeTheWalls2",
-        "processId": 28187,
+        "processId": 3225,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "3c00acee",
-            "name": "com.android.settings",
-            "processId": 27425,
+            "name": "com.DefaultCompany.DodgeTheWalls2",
+            "processId": 28187,
+            "exited": true
+        },
+        {
+            "deviceId": "3c00acee",
+            "name": "com.DefaultCompany.Escape",
+            "processId": 25911,
+            "exited": true
+        },
+        {
+            "deviceId": "3c00acee",
+            "name": "com.DefaultCompany.Escape",
+            "processId": 27997,
+            "exited": true
+        },
+        {
+            "deviceId": "3c00acee",
+            "name": "com.DefaultCompany.Escape",
+            "processId": 30417,
+            "exited": true
+        },
+        {
+            "deviceId": "3c00acee",
+            "name": "com.DefaultCompany.DodgeTheWalls2",
+            "processId": 31779,
+            "exited": true
+        },
+        {
+            "deviceId": "3c00acee",
+            "name": "com.coloros.recents",
+            "processId": 27524,
             "exited": false
         },
         {
             "deviceId": "3c00acee",
             "name": "com.DefaultCompany.DodgeTheWalls2",
-            "processId": 28187,
+            "processId": 3225,
             "exited": false
         }
     ],
