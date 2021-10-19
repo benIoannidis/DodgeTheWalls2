@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Script to handle changing the mute button text to inform the user of the audio's current state
+/// </summary>
 public class MuteButton_Checker : MonoBehaviour
 {
     public bool muted;

@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// script to handle instantiation of obstacle objects (enemies and meteors)
+/// </summary>
 public class Obstacle_SpawnManager : MonoBehaviour
 {
+    //prefabs to instantiate
     [Header("Prefabs")]
 
     [SerializeField]
@@ -16,10 +20,11 @@ public class Obstacle_SpawnManager : MonoBehaviour
     private GameObject scoreObject;
 
     [Header("Lanes")]
-
+    //reference to game lane objects
     [SerializeField]
     private GameObject[] gameLanes;
 
+    //exposed spawn settings
     [Header("Spawn settings")]
 
     [SerializeField]
@@ -28,6 +33,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
     [SerializeField]
     private float maxSpawnTime = 2f;
 
+    //determines spawn delay, as well as obstacle movement speed on instantiation
     private int currentDifficulty = 10;
     public float timeBetweenSpawns;
 
@@ -40,6 +46,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
     [SerializeField]
     private Game_ScoreManager scoreManager;
 
+    //struct to hold patterns
     struct Pattern
     {
         public Pattern(bool b0, bool b1, bool b2, bool b3, bool b4)
@@ -55,6 +62,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
         public bool[] positions;
     }
 
+    //list of patterns to call at random
     Dictionary<int, Pattern> m_patterns;
 
     private bool canIncreaseDif = true;
@@ -106,6 +114,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
         m_patterns[29] = new Pattern(true, true, true, true, true);
         #endregion
         #endregion
+
         timeBetweenSpawns = maxSpawnTime;
     }
 
@@ -232,6 +241,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
         }
     }
 
+    //check difficulty, and spawn the appropriate number of obstacles, at the current difficulties movement speed
     private IEnumerator SpawnObstacles()
     {
         int patternKey;
@@ -271,8 +281,9 @@ public class Obstacle_SpawnManager : MonoBehaviour
                 patternKey = Random.Range(14, 30);
             }
         }
-        //Debug.Log(patternKey);
         yield return new WaitForSeconds(timeBetweenSpawns);
+        
+        //decide whether to spawn a meteor or enemy ship
         for (int i = 0; i < 5; i++)
         {
             if (m_patterns[patternKey].positions[i])
@@ -361,6 +372,7 @@ public class Obstacle_SpawnManager : MonoBehaviour
         cooldownActive = false;
     }
 
+    //increase the difficulty (increase movement speed, and decrease time between obstacle spawns)
     public void IncreaseDifficulty()
     {
         if (currentDifficulty > 0)

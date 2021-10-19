@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Script to handle into fading when changing scenes 
+/// </summary>
 public class FadePanel_GameScene : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +21,7 @@ public class FadePanel_GameScene : MonoBehaviour
 
     private void Update()
     {
+        //check whether fading out or in, and increment the image alpha accordingly
         if (shouldFadeOut)
         {
             currentPanelColour = panel.GetComponent<Image>().color;
@@ -59,12 +63,10 @@ public class FadePanel_GameScene : MonoBehaviour
             {
                 if (exitToMenu)
                 {
-                    //Time.timeScale = 1;
                     SceneManager.LoadScene(0);
                 }
                 else
                 {
-                    //Time.timeScale = 1;
                     SceneManager.LoadScene(1);
                 }
             }

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// this script handles fading into the menu from game load, as well as the event trigger methods on menu UI button presses (play/mute)
+/// </summary>
 public class MainMenu_Manager : MonoBehaviour
 {
     [SerializeField]
@@ -42,6 +45,8 @@ public class MainMenu_Manager : MonoBehaviour
 
     private void Update()
     {
+        //decrement alpha for black background, and increase size of headline text
+        #region Handle startup transition from black screen to menu
         if (checkTextGrow)
         {
             if (headlineTextObjects[0].GetComponent<RectTransform>().localScale.x < 1)
@@ -85,7 +90,9 @@ public class MainMenu_Manager : MonoBehaviour
                 blackoutPanel.SetActive(false);
             }
         }
+        #endregion
 
+        //increment alpha for black image again, and once completed, call "LoadGame" method
         if (shouldFadeToLeave)
         {
             if (headlineTextObjects[0].GetComponent<RectTransform>().localScale.x > 0)
@@ -121,6 +128,7 @@ public class MainMenu_Manager : MonoBehaviour
         }
     }
 
+    //slight delay on loading the game scene to prevent some flickering I was witnessing
     private IEnumerator LoadGame()
     {
         gameStartedLoading = true;
@@ -128,15 +136,11 @@ public class MainMenu_Manager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+    //called by Play button event trigger
     public void OnPlayPress()
     {
         blackoutPanel.SetActive(true);
         shouldFadeToLeave = true;
         gameStartedLoading = false;
-    }
-
-    public void OnExitPress()
-    {
-
     }
 }

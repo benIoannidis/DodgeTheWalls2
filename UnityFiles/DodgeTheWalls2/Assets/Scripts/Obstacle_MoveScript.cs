@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script to handle the movement and collision of instantiated enemies and meteors
+/// </summary>
 public class Obstacle_MoveScript : MonoBehaviour
 {
+    //reference to the appropriate explosion particle prefab
     [SerializeField]
     private GameObject explosionParticles;
 
     public float moveSpeed = 5f;
 
+    //bool that is checked when instantiating explosion prefab, as well as whether to add score or not when destroyed
     public bool isEnemy = true;
     private bool canShoot = true;
     public int highestRandShootingNumber;
@@ -35,6 +40,7 @@ public class Obstacle_MoveScript : MonoBehaviour
 
     private IEnumerator Shoot()
     {
+        //decide randomly between specified values (0 being shoot)
         int rand = Random.Range(0, highestRandShootingNumber);
         if (rand == 0)
         {
@@ -48,6 +54,7 @@ public class Obstacle_MoveScript : MonoBehaviour
         canShoot = true;
     }
 
+    //check for collision with player bullet trigger, and spawn death particles, and destroy this obstacle as well as bullet
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == 9) //Player bullet layer

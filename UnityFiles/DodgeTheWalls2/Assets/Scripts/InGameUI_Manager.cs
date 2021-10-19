@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script handles platform specific disabling of UI elements, as well as pausing the game on the button event trigger
+/// </summary>
 public class InGameUI_Manager : MonoBehaviour
 {
     [SerializeField]
@@ -15,6 +18,7 @@ public class InGameUI_Manager : MonoBehaviour
 
     private void Start()
     {
+        //remove shoot button for specified platforms
 #if PLATFORM_STANDALONE_WIN
         shootButton.SetActive(false);
 #elif PLATFORM_WEBGL
@@ -22,7 +26,7 @@ public class InGameUI_Manager : MonoBehaviour
 #endif
     }
 
-
+    //called on event trigger when the pause button is pressed
     public void PauseGame()
     {
         Time.timeScale = 0.0f;

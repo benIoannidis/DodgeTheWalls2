@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// script to handle pause menu UI event triggers
+/// </summary>
 public class PauseMenu_Manager : MonoBehaviour
 {
     [SerializeField]
@@ -26,6 +29,7 @@ public class PauseMenu_Manager : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
+    //called by resume button event trigger
     public void ResumeButtonPress()
     {
         pauseMenu.SetActive(false);
@@ -37,6 +41,8 @@ public class PauseMenu_Manager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    //inform fade image that game is transitioning scenes, disable particles and obstacle spawning
+    //called by exit button event trigger
     public void ExitButtonPress()
     {
         fadeManager.GetComponent<FadePanel_GameScene>().exitToMenu = true;
@@ -59,6 +65,8 @@ public class PauseMenu_Manager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    //inform fade image that game is transitioning scenes, disable particles and obstacle spawning
+    //called by restart button event trigger
     public void RestartButtonPress()
     {
         fadeManager.GetComponent<FadePanel_GameScene>().shouldFadeIn = true;
